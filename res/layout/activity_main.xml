@@ -22,7 +22,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/main_image"
                     android:layout_width="100dp"
                     android:layout_height="140dp"
                     android:padding="5dp"
@@ -41,7 +41,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:id="@+id/textView"
+                            android:id="@+id/main_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="군도"
@@ -50,7 +50,7 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:id="@+id/imageView2"
+                            android:id="@+id/main_age"
                             android:layout_width="25dp"
                             android:layout_height="25dp"
                             android:layout_marginRight="170dp"
@@ -132,7 +132,7 @@
 
 
                     <LinearLayout
-                        android:layout_width="139dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="1dp"
                         android:layout_weight="1"
@@ -164,11 +164,11 @@
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="139dp"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:background="@android:color/background_light">
+                        android:background="@android:color/background_light"
+                        android:orientation="vertical">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -211,7 +211,7 @@
                     </LinearLayout>
 
                     <RelativeLayout
-                        android:layout_width="139dp"
+                        android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="1dp"
                         android:layout_weight="1"
@@ -247,7 +247,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/main_summary_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -257,13 +257,13 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView17"
+                    android:id="@+id/main_summary_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:text="군도, 백성을 구하라!   양반과 탐관오리들의 착취가 극에 달했던 조선 철종 13년. 힘 없는 백성의 편이 되어  세상을 바로잡고자 하는 의적떼인 군도(群盜), 지리산 추설이 있었다.    쌍칼 도치 vs 백성의 적 조윤  잦은 자연재해, 기근과 관의 횡포까지 겹쳐 백성들의 삶이 날로 피폐해 져 가는 사이,   나주 대부호의 서자로 조선 최고의 무관 출신인 조윤은 극악한 수법으로 양민들을 수탈,  삼남지방 최고의 대부호로 성장한다. 한편 소, 돼지를 잡아 근근이 살아가던 천한 백정 돌무치는  죽어도 잊지 못할 끔찍한 일을 당한 뒤 군도에 합류. 지리산 추설의 신 거성(新 巨星) 도치로 거듭난다.     뭉치면 백성, 흩어지면 도적!   망할 세상을 뒤집기 위해, 백성이 주인인 새 세상을 향해 도치를 필두로 한 군도는 백성의 적,   조윤과 한 판 승부를 시작하는데..." />
+                    android:text="@string/summary" />
 
             </LinearLayout>
 
@@ -400,7 +400,8 @@
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="0dp"
                     android:layout_marginRight="0dp"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="8dp"
+                    />
 
                 <RelativeLayout
                     android:layout_width="match_parent"

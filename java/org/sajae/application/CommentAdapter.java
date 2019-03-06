@@ -1,5 +1,7 @@
 package org.sajae.application;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -36,12 +38,15 @@ public class CommentAdapter extends BaseAdapter {
         }
 
         CommentItem item = items.get(position);
+
         view.setItemImage(item.getResId());
         view.setItemId(item.getUserId());
         view.setItemTime(item.getPassTime());
         view.setItemComment(item.getComment());
-        view.setItemRecommandCount(item.getRecommandCount());
+        view.setItemRating(item.getUserRating());
 
         return view;
     }
+
 }
+

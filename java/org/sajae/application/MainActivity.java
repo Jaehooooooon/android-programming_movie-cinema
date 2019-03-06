@@ -1,5 +1,6 @@
 package org.sajae.application;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,12 +9,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     int likeNumber = 15;
-    boolean likeState = false;
     int dislikeNumber = 1;
+    boolean likeState = false;
     boolean dislikeState = false;
     Button likeButton;
     Button dislikeButton;
@@ -35,25 +38,28 @@ public class MainActivity extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
 
         adapter = new CommentAdapter();
-        adapter.addItem(new CommentItem(R.drawable.user1, "kym71**", "10분전", "적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요."));
-        adapter.addItem(new CommentItem(R.drawable.user1, "seo72**", "10분전", "적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요."));
-
+        adapter.addItem(new CommentItem(R.drawable.user1, "kym71**", "15분전","적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요.", 4));
+        adapter.addItem(new CommentItem(R.drawable.user1, "seo72**", "12분전","적당히 재밌다. 오랜만에 잠 안오는 영화 봤네요.", 2));
+        Collections.reverse(adapter.items);
         listView.setAdapter(adapter);
 
+//작성하기 버튼
         commentWriteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "작성하기", Toast.LENGTH_SHORT).show();
+                showCommentWriteActivity();
             }
         });
-
+//모두보기 버튼
         commentSeeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "모두보기", Toast.LENGTH_SHORT).show();
+                showCommentSeeActivity();
             }
         });
-
+//좋아요 버튼
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,8 +75,8 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        dislikeButton.setOnClickListener(new View.OnClickListener() {
+//싫어요 버튼
+    dislikeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (dislikeState) {//안좋아요 눌려있음
@@ -86,6 +92,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+//작성하기 화면
+    public void showCommentWriteActivity() {
+        Intent intent = new Intent(getApplicationContext(), CommentWriteActivity.class);
+        startActivityForResult(intent, 101);
+    }
+//모두보기 화면
+    public void showCommentSeeActivity() {
+        Intent intent = new Intent(getApplicationContext(), CommentSeeActivity.class);
+        //모두보기 액티비티로 어레이리스트 넘겨주기
+        intent.putParcelableArrayListExtra("items", adapter.items);
+
+        startActivityForResult(intent, 201);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+
+        if (requestCode == 101) {
+            Toast.makeText(getApplicationContext(), "작성하기에서 돌아옴", Toast.LENGTH_SHORT).show();
+
+            if (intent != null) {
+                String contents = intent.getStringExtra("contents");
+                float rating = intent.getFloatExtra("rating", 0.0f);
+
+                Collections.reverse(adapter.items);
+                adapter.addItem(new CommentItem(R.drawable.user1, "seo71**", "1분전",contents, rating));
+                Collections.reverse(adapter.items);
+                adapter.notifyDataSetChanged(); //어댑터 새로고침
+            }
+        } else if (requestCode == 201) {
+            Toast.makeText(getApplicationContext(), "모두보기에서 돌아옴", Toast.LENGTH_SHORT).show();
+
+            if (intent != null) {
+                ArrayList<CommentItem> intentitem = intent.getParcelableArrayListExtra("items");
+                adapter.items = intentitem;
+
+                adapter.notifyDataSetChanged(); //어댑터 새로고침
+            }
+        }
     }
 
     public void incrLikeCount() {

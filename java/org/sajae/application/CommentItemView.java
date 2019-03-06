@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class CommentItemView extends LinearLayout {
@@ -12,7 +13,7 @@ public class CommentItemView extends LinearLayout {
     TextView itemId;
     TextView itemTime;
     TextView itemComment;
-    TextView itemRecommandCount;
+    RatingBar itemRatingBar;
 
     public CommentItemView(Context context) {
         super(context);
@@ -32,13 +33,13 @@ public class CommentItemView extends LinearLayout {
         itemId = (TextView) findViewById(R.id.item_id);
         itemTime = (TextView) findViewById(R.id.item_time);
         itemComment = (TextView) findViewById(R.id.item_comment);
-        itemRecommandCount = (TextView) findViewById(R.id.recommand_count_view);
+        itemRatingBar = (RatingBar) findViewById(R.id.ratingBar2);
     }
 
     public void setItemImage(int resId) {itemImage.setImageResource(resId);}
     public void setItemId(String userId) {itemId.setText(userId);}
     public void setItemTime(String passTime) {itemTime.setText(passTime);}
     public void setItemComment(String comment) {itemComment.setText(comment);}
-    public void setItemRecommandCount(int recommandCount) {itemRecommandCount.setText(String.valueOf(recommandCount));}
+    public void setItemRating(float userRating) {itemRatingBar.setRating(userRating);}
 
 }

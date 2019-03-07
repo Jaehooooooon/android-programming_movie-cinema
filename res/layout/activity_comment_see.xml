@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="군도"
+            android:text="@string/movie_title"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -56,9 +56,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
             android:text="8.2 (1,142명 참여)"
-            android:textSize="18dp" />
+            android:textSize="15dp" />
     </RelativeLayout>
 
     <LinearLayout

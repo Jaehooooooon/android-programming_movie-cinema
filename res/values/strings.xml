@@ -8,12 +8,42 @@
     <string name="action_settings">Settings</string>
     <string name="write_activity_name">한줄평 작성</string>
     <string name="see_activity_name">한줄평 목록</string>
-    <string name="movie_title">군도</string>
-    <string name="release">2014.07.23 개봉</string>
-    <string name="genre_time">액션 / 137 분</string>
-    <string name="reservation_rate">5위 1.8%</string>
-    <string name="accumulate_audience">839,399명</string>
+    
+    <string name="movie_title">영화 제목</string>
+    <string name="movie_date">개봉일</string>
+    <string name="release">" "개봉</string>
+    <string name="genre">액션</string>
+    <string name="divider">" "/" "</string>
+    <string name="duration">137</string>
+    <string name="minute">" "분</string>
+    
+    <string name="reservation_title">예매율</string>
+    <string name="reservation_grade">5</string>
+    <string name="reservation_grade2">위" "</string>
+    <string name="reservation_rate">1.8</string>
+    <string name="percent">%</string>
+    
+    <string name="audience_rating_title">평점</string>
+    <string name="audience_rating">0.0</string>
+    
+    <string name="audience_title">누적관객수</string>
+    <string name="audience">839,399</string>
+    <string name="accumulate_audience">명</string>
+
+    <string name="director_actor_title">감독/출연</string>
+    <string name="director_title">감독</string>
     <string name="director">윤종빈</string>
-    <string name="appearance">하정우(도치), 강동원(조윤)</string>
-    <string name="summary">군도, 백성을 구하라!   양반과 탐관오리들의 착취가 극에 달했던 조선 철종 13년. 힘 없는 백성의 편이 되어  세상을 바로잡고자 하는 의적떼인 군도(群盜), 지리산 추설이 있었다.    쌍칼 도치 vs 백성의 적 조윤  잦은 자연재해, 기근과 관의 횡포까지 겹쳐 백성들의 삶이 날로 피폐해 져 가는 사이,   나주 대부호의 서자로 조선 최고의 무관 출신인 조윤은 극악한 수법으로 양민들을 수탈,  삼남지방 최고의 대부호로 성장한다. 한편 소, 돼지를 잡아 근근이 살아가던 천한 백정 돌무치는  죽어도 잊지 못할 끔찍한 일을 당한 뒤 군도에 합류. 지리산 추설의 신 거성(新 巨星) 도치로 거듭난다.     뭉치면 백성, 흩어지면 도적!   망할 세상을 뒤집기 위해, 백성이 주인인 새 세상을 향해 도치를 필두로 한 군도는 백성의 적,   조윤과 한 판 승부를 시작하는데...</string>
+    <string name="actor_title">출연</string>
+    <string name="actor">하정우(도치), 강동원(조윤)</string>
+    
+    <string name="synopsis_title">줄거리</string>
+    <string name="synopsis">군도, 백성을 구하라!   양반과 탐관오리들의 착취가 극에 달했던 조선 철종 13년. 힘 없는 백성의 편이 되어  세상을 바로잡고자 하는 의적떼인 군도(群盜), 지리산 추설이 있었다.    쌍칼 도치 vs 백성의 적 조윤  잦은 자연재해, 기근과 관의 횡포까지 겹쳐 백성들의 삶이 날로 피폐해 져 가는 사이,   나주 대부호의 서자로 조선 최고의 무관 출신인 조윤은 극악한 수법으로 양민들을 수탈,  삼남지방 최고의 대부호로 성장한다. 한편 소, 돼지를 잡아 근근이 살아가던 천한 백정 돌무치는  죽어도 잊지 못할 끔찍한 일을 당한 뒤 군도에 합류. 지리산 추설의 신 거성(新 巨星) 도치로 거듭난다.     뭉치면 백성, 흩어지면 도적!   망할 세상을 뒤집기 위해, 백성이 주인인 새 세상을 향해 도치를 필두로 한 군도는 백성의 적,   조윤과 한 판 승부를 시작하는데...</string>
+
+    <string name="reviewer_rating_title">한줄평 평점</string>
+    <string name="reviewer_rating">0.0</string>
+    <string name="comment_audience_rating1">" "(</string>
+    <string name="comment_audience_rating2">명" "참여)</string>
+    <string name="comment_guide">평점을 입력해 주세요</string>
+    <string name="comment_hint">100자 이내로 작성해 주세요.</string>
+    <string name="comment_recommand">추천" "</string>
 </resources>

@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/darker_gray"
+    android:background="@color/gray"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        android:background="@android:color/background_light">
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/see_title_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -22,55 +23,61 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/age"
+            android:id="@+id/see_grade_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="79dp"
-            android:layout_marginTop="13dp"
+            android:layout_margin="10dp"
             app:srcCompat="@drawable/ic_15" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:background="@android:color/background_light">
-
-        <RatingBar
-            android:id="@+id/ratingBar3"
-            style="@style/Widget.AppCompat.RatingBar.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:numStars="5"
-            android:rating="4.1"
-            android:stepSize="0.1" />
+        android:background="@color/white">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:text="8.2 (1,142명 참여)"
+            android:text="@string/reviewer_rating_title" />
+
+        <RatingBar
+            android:id="@+id/reviewer_ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:numStars="5"
+            android:rating="4.1"
+            android:stepSize="0.001"/>
+
+        <TextView
+            android:id="@+id/reviewer_rating_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/reviewer_ratingBar"
+            android:text="@string/reviewer_rating"
             android:textSize="15dp" />
+
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="8dp"
-        android:background="@android:color/background_light"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -78,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:background="@android:color/background_light">
+            android:background="@color/white">
 
             <TextView
                 android:id="@+id/textView22"
@@ -87,7 +94,7 @@
                 android:layout_alignBaseline="@+id/comment_write_button"
                 android:layout_marginLeft="5dp"
                 android:text="한줄평"
-                android:textColor="@android:color/background_dark"
+                android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold" />
 
@@ -131,8 +138,7 @@
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:layout_marginRight="0dp"
-            android:layout_marginBottom="8dp"
-            />
+            android:layout_marginBottom="8dp" />
 
     </LinearLayout>
 

@@ -6,12 +6,12 @@
     android:orientation="horizontal">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/item_image"
+        android:id="@+id/writer_image_view"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:src="@mipmap/ic_launcher"
-        app:civ_border_color="#FFCCCCCC"
+        app:civ_border_color="@color/gray"
         app:civ_border_width="2dp" />
 
     <LinearLayout
@@ -20,12 +20,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/item_id"
+            android:id="@+id/writer_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="userId"
-            android:textColor="#000000"
+            android:textColor="@color/black"
             android:textSize="10dp"
             android:textStyle="bold" />
 
@@ -35,7 +35,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/item_time"
+                android:id="@+id/time_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="passTIme"
@@ -57,12 +57,12 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/item_comment"
-            android:layout_width="match_parent"
+            android:id="@+id/contents_view"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="comment"
-            android:textColor="@android:color/background_dark"
+            android:textColor="@color/black"
             android:textSize="14dp"
             android:textStyle="bold" />
 
@@ -73,33 +73,33 @@
             android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="추천  "
-                android:textColor="@android:color/background_dark" />
+            <Button
+                android:id="@+id/recommend_button"
+                android:layout_width="40dp"
+                android:layout_height="20dp"
+                android:background="@android:color/transparent"
+                android:text="@string/comment_recommand"
+                android:textColor="@color/black" />
 
             <TextView
-                android:id="@+id/recommand_count_view"
+                android:id="@+id/recommend_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="0"
-                android:textColor="@android:color/background_dark" />
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="   |   "
-                android:textColor="@android:color/background_dark"
+                android:textColor="@color/black"
                 android:textSize="13dp" />
 
             <TextView
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:text="신고하기"
                 android:textSize="13dp" />
         </LinearLayout>

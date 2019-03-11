@@ -60,4 +60,5 @@ public class MovieListFragment extends Fragment {
         pagerAdapter.addItem(moviePage);
     }
 
+
 }

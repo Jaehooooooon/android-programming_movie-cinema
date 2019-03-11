@@ -4,5 +4,4 @@ public interface FragmentCallback {
     public void onFragmentSelected(int position);
     public void showCommentWriteActivity();
     public void showCommentSeeActivity();
-
 }

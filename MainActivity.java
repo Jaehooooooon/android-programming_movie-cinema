@@ -50,32 +50,18 @@ public class MainActivity extends AppCompatActivity
 
     private static final int MAIN_WRITE_REQUESTCODE = 101;
     private static final int MAIN_SEE_REQUESTCODE = 201;
-    //static final int DETAIL_FRAG_POSITION = 1;
+    static final int DETAIL_FRAG_POSITION = 1;
     static final int LIST_FRAG_POSITION = 0;
+    private static int curPosition;
 
     // 뒤로가기 버튼 입력시간이 담길 long 객체
     private long pressedTime = 0;
-    // 리스너 생성
-    public interface OnBackPressedListener {
-        public void onBack();
-    }
-    // 리스너 객체 생성
-    private OnBackPressedListener mBackListener;
-    // 리스너 설정 메소드
-    public void setOnBackPressedListener(OnBackPressedListener listener) {
-        mBackListener = listener;
-    }
     // 뒤로가기 버튼을 눌렀을 때의 오버라이드 메소드
     @Override
     public void onBackPressed() {
-        // 다른 Fragment 에서 리스너를 설정했을 때 처리됩니다.
-        if(mBackListener != null) {
-            mBackListener.onBack();
-            Log.e("!!!", "Listener is not null");
-            // 리스너가 설정되지 않은 상태(예를들어 메인Fragment)라면
-            // 뒤로가기 버튼을 연속적으로 두번 눌렀을 때 앱이 종료됩니다.
+        if(curPosition == DETAIL_FRAG_POSITION) {
+            onFragmentSelected(LIST_FRAG_POSITION);
         } else {
-            Log.e("!!!", "Listener is null");
             if ( pressedTime == 0 ) {
                 Snackbar.make(findViewById(R.id.drawer_layout),
                         " 한 번 더 누르면 종료됩니다." , Snackbar.LENGTH_LONG).show();
@@ -91,14 +77,12 @@ public class MainActivity extends AppCompatActivity
                 }
                 else {
                     super.onBackPressed();
-                    Log.e("!!!", "onBackPressed : finish, killProcess");
                     finish();
                     android.os.Process.killProcess(android.os.Process.myPid());
                 }
             }
         }
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,13 +113,13 @@ public class MainActivity extends AppCompatActivity
 
         requestMovieList(LIST_FRAG_POSITION);
 
-        //영화 목록(뷰페이저 화면)을 첫 화면으로
+        //프래그먼트들을 container에 추가해놓기
+        getSupportFragmentManager().beginTransaction().add(R.id.container, movieDetailsFragment).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.container, movieListFragment).commit();
-
     }
 
     public void requestMovieDetails(final int index) {
-        String url = "http://" + AppHelper.host + ":" + AppHelper.port + "/movie/readMovie";
+        String url = "http://" + AppHelper.host + ":" + AppHelper.port + AppHelper.readMovie;
         url += "?" + "id=" + toString().valueOf(index);
 
         StringRequest request = new StringRequest(
@@ -160,7 +144,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void requestMovieList(final int index) {
-        String url = "http://" + AppHelper.host + ":" + AppHelper.port + "/movie/readMovieList";
+        String url = "http://" + AppHelper.host + ":" + AppHelper.port + AppHelper.readMovieList;
         url += "?" + "type=1";
 
         StringRequest request = new StringRequest(
@@ -204,9 +188,8 @@ public class MainActivity extends AppCompatActivity
     public void setMovieDetails() {
         MovieInfo movieInfo = movieDetail.result.get(0);
         Log.e("Detail", "setDeails");
-
         movieDetailsFragment.setDetails(movieInfo.id, movieInfo.thumb, movieInfo.title, movieInfo.grade, movieInfo.date, movieInfo.genre, movieInfo.duration, movieInfo.like, movieInfo.dislike, movieInfo.reservation_grade,
-                movieInfo.reservation_rate, movieInfo.audience_rating, movieInfo.audience, movieInfo.synopsis, movieInfo.director, movieInfo.actor, movieInfo.reviewer_rating/*, commentItems*/);
+                movieInfo.reservation_rate, movieInfo.audience_rating, movieInfo.audience, movieInfo.synopsis, movieInfo.director, movieInfo.actor, movieInfo.reviewer_rating);
     }
 
     public void setMovieList() {
@@ -255,36 +238,23 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onFragmentSelected(int position) {
-        //FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         Fragment curFragment;
-
         if (position == LIST_FRAG_POSITION) {
+            getSupportFragmentManager().beginTransaction().hide(movieDetailsFragment).commit();
             curFragment = movieListFragment;
+            curPosition = LIST_FRAG_POSITION;
             toolbar.setTitle("영화 목록");
-            movieListFragment.pager.setAdapter(movieListFragment.pagerAdapter);
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, curFragment).commit();
-            requestMovieList(position);
         } else {
+            getSupportFragmentManager().beginTransaction().hide(movieListFragment).commit();
             curFragment = movieDetailsFragment;
+            curPosition = DETAIL_FRAG_POSITION;
             toolbar.setTitle("영화 상세");
-            movieListFragment.pager.setAdapter(nullAdapter);    //기존의 adapter 해제용(계속 연결돼있으면 페이저가 처음말고는 안보임)
-
-            getSupportFragmentManager().beginTransaction().replace(R.id.container, curFragment).commit();
             requestMovieDetails(position);
         }
+
+        getSupportFragmentManager().beginTransaction().show(curFragment).commit();
     }
-    /*
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-    */
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -303,7 +273,6 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_movie_list) {
             // 뷰페이저로 이동
-            setOnBackPressedListener(null);
             onFragmentSelected(LIST_FRAG_POSITION);
         } else if (id == R.id.nav_movie_api) {
 

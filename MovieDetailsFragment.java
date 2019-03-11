@@ -29,7 +29,7 @@ import org.sajae.application4.data.ResponseInfo;
 
 import static org.sajae.application4.MainActivity.LIST_FRAG_POSITION;
 
-public class MovieDetailsFragment extends Fragment implements MainActivity.OnBackPressedListener{
+public class MovieDetailsFragment extends Fragment {
     int movieId=1;
     ImageLoadTask task;
     String movieTitle;
@@ -72,14 +72,12 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
 
     FragmentCallback callback;
 
-    ListView listView;
     CommentList commentList;
     CommentAdapter adapter;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        ((MainActivity)context).setOnBackPressedListener(this);
 
         if (context instanceof FragmentCallback) {
             callback = (FragmentCallback) context;
@@ -123,7 +121,7 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
 
         Button commentWriteButton = (Button) rootView.findViewById(R.id.comment_write_button);
         Button commentSeeButton = (Button) rootView.findViewById(R.id.comment_see_button);
-        listView = (ListView) rootView.findViewById(R.id.listView);
+        ListView listView = (ListView) rootView.findViewById(R.id.listView);
 
         adapter = new CommentAdapter();
         adapter.notifyDataSetChanged();
@@ -182,7 +180,7 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
     }
 
     public void requestCommentList(final int movieId) {
-        String url = "http://" + AppHelper.host + ":" + AppHelper.port + "/movie/readCommentList";
+        String url = "http://" + AppHelper.host + ":" + AppHelper.port + AppHelper.readCommentList;
         url += "?" + "id=" + movieId + "&limit=2";
 
         StringRequest request = new StringRequest(
@@ -204,7 +202,6 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
 
         request.setShouldCache(false);
         AppHelper.requestQueue.add(request);
-
     }
 
     public void processResponse(String response) {
@@ -225,13 +222,13 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
         }
         adapter.notifyDataSetChanged();
     }
-
+/*
     public void resetComment() {
         adapter.items.clear();
         requestCommentList(movieId);
         listView.setAdapter(adapter);
     }
-
+*/
     public void setDetails(int id, String image, String title, int grade, String date, String genre, int duration, int like, int dislike, int reservation_grade,
                               float reservation_rate, float audience_rating, int audience, String synopsis, String director, String actor, float reviewer_rating) {
         movieId = id;
@@ -273,7 +270,7 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
         synopsisView.setText(movieSynopsis);
         directorView.setText(movieDirector);
         actorView.setText(movieActor);
-
+        adapter.items.clear();
         requestCommentList(movieId);
     }
 
@@ -318,18 +315,6 @@ public class MovieDetailsFragment extends Fragment implements MainActivity.OnBac
         dislikeNumber -= 1;
         dislikeNumberView.setText(String.valueOf(dislikeNumber));
         dislikeButton.setBackgroundResource(R.drawable.ic_thumb_down);
-    }
-
-    @Override
-    public void onBack() {
-        Log.e("Other", "onBack()");
-        // 리스너를 설정하기 위해 Activity 를 받아옵니다.
-        MainActivity activity = (MainActivity)getActivity();
-        // 한번 뒤로가기 버튼을 눌렀다면 Listener 를 null 로 해제
-        activity.setOnBackPressedListener(null);
-        callback.onFragmentSelected(LIST_FRAG_POSITION);
-        // Activity 에서도 뭔가 처리하고 싶은 내용이 있다면
-        // activity.onBackPressed();
     }
 
 }

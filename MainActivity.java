@@ -61,10 +61,11 @@ public class MainActivity extends AppCompatActivity
     public void onBackPressed() {
         if(curPosition == DETAIL_FRAG_POSITION) {
             onFragmentSelected(LIST_FRAG_POSITION);
+            pressedTime = 0 ;
         } else {
             if ( pressedTime == 0 ) {
                 Snackbar.make(findViewById(R.id.drawer_layout),
-                        " 한 번 더 누르면 종료됩니다." , Snackbar.LENGTH_LONG).show();
+                        " 한 번 더 누르면 종료됩니다." , Snackbar.LENGTH_SHORT).show();
                 pressedTime = System.currentTimeMillis();
             }
             else {

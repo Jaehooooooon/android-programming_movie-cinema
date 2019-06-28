@@ -1,13 +1,10 @@
 package org.sajae.application4;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,7 +12,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -25,15 +21,9 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 
-import org.sajae.application4.data.CommentItem;
-import org.sajae.application4.data.CommentList;
 import org.sajae.application4.data.MovieInfo;
 import org.sajae.application4.data.MovieList;
 import org.sajae.application4.data.ResponseInfo;
-
-import java.io.FileInputStream;
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FragmentCallback {
@@ -53,6 +43,8 @@ public class MainActivity extends AppCompatActivity
     static final int DETAIL_FRAG_POSITION = 1;
     static final int LIST_FRAG_POSITION = 0;
     private static int curPosition;
+
+    static int nwStatus = 0;
 
     // 뒤로가기 버튼 입력시간이 담길 long 객체
     private long pressedTime = 0;
@@ -105,6 +97,15 @@ public class MainActivity extends AppCompatActivity
 
         if (AppHelper.requestQueue == null) {
             AppHelper.requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
+        nwStatus = NetworkStatus.getConnectivityStatus(getApplicationContext());
+        if (nwStatus == NetworkStatus.TYPE_MOBILE) {
+            Toast.makeText(getApplicationContext(), "모바일 연결", Toast.LENGTH_SHORT).show();
+        } else if (nwStatus == NetworkStatus.TYPE_WIFI) {
+            Toast.makeText(getApplicationContext(), "Wifi 연결", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "연결 없음", Toast.LENGTH_SHORT).show();
         }
 
         movieListFragment = new MovieListFragment();
